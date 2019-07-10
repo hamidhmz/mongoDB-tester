@@ -50,7 +50,7 @@ app.get("/mongo-client/:count",async (req,res)=>{
     res.send("hi "+req.params.count);
 });
 
-app.get("/mongoose/insert/:count",async (req,res)=>{
+app.get("/mongoose/insert",async (req,res)=>{
     res.send("okey");
     // let counter = 0;
     // let endString = 0;
@@ -79,7 +79,7 @@ app.get("/mongoose/insert/:count",async (req,res)=>{
     console.log("done");
 });
 
-app.get("/mongoose/update/:count",async (req,res)=>{
+app.get("/mongoose/update",async (req,res)=>{
     res.send("okey");
     // let counter = 0;
     // let endString = 0;
@@ -106,7 +106,7 @@ app.get("/mongoose/update/:count",async (req,res)=>{
     console.log("done");
 });
 
-app.get("/mongoose/updateOne/:count",async (req,res)=>{
+app.get("/mongoose/updateOne",async (req,res)=>{
     res.send("okey");
     // for(i=0;i<req.params.count;i++){
     const result = await Course.updateOne({},{
@@ -143,7 +143,7 @@ app.get("/mongoose/updateOne/:count",async (req,res)=>{
 
 // });
 
-app.get("/mongoose/select/:count",async (req,res)=>{
+app.get("/mongoose/select",async (req,res)=>{
 
     res.send("okey"); 
     
