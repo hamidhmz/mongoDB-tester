@@ -1,6 +1,6 @@
 FROM keymetrics/pm2:latest-alpine
 
-WORKDIR /home/debian/id_creator/app
+WORKDIR /home/debian/mongodb-test
 
 ENV NPM_CONFIG_LOGLEVEL warn
 
