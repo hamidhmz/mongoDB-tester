@@ -10,4 +10,13 @@ services:
       - '3084:3084'
     environment:
       PORT: '3084'
-
+  mongo:
+    container_name: mongo-tester
+    restart: always
+    image: mongo
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=password
+    ports:
+      - "27017:27017"
+    
