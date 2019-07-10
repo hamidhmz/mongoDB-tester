@@ -1,12 +1,73 @@
+# version: '3'
+#   services:
+#     app:
+#       restart: always
+#       build: .
+#       volumes:
+#         - ./:/home/debian/mongodb-test
+#       tty: true
+#       ports:
+#         - '5060:5060'
+#       environment:
+#         PORT: '5060'
 version: '3'
-  services:
-    app:
-      restart: always
-      build: .
-      volumes:
-        - ./:/home/debian/mongodb-test
-      tty: true
-      ports:
-        - '5060:5060'
-      environment:
-        PORT: '5060'
+services:
+  # rabbit1:
+  #   image: "rabbitmq:management"
+  #   restart: always
+  #   ports:
+  #     - "15672:15672"
+  #     - "5672:5672"
+  #     - "35197:35197"
+    # command: 'rabbitmq-plugins enable --offline rabbitmq_management'
+    # networks:
+    #   id_creator:
+    #     ipv4_address: 172.42.0.1
+
+
+
+  db:
+    image: mysql:8
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+      # MYSQL_ALLOW_EMPTY_PASSWORD: true
+    ports:
+      - '3306:3306'
+    # networks:
+    #   id_creator:
+    #     ipv4_address: 172.42.0.2
+
+  phpmyadmin:
+    container_name: id_creator_phpmyadmin
+    restart: always
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: password
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - '8081:80'
+    # networks:
+    #   id_creator:
+    #     ipv4_address: 172.42.0.3
+
+  app:
+    restart: always
+    build: .
+    volumes:
+      - ./:/home/debian/id_creator/app
+    tty: true
+    ports:
+      - '5060:5060'
+    # networks:
+    #   id_creator:
+    #     ipv4_address: 172.42.0.4
+  # networks:
+  #   id_creator:
+  #     name: id_creator_net
+  #     driver: bridge
+  #     ipam:
+  #       driver: bridge
+  #       config:
+  #         - subnet: 172.42.0.0/5
