@@ -1,0 +1,12 @@
+version: '3'
+  services:
+    app:
+      restart: always
+      build: .
+      volumes:
+        - ./:/home/debian/mongodb-test
+      tty: true
+      ports:
+        - '5060:5060'
+      environment:
+        PORT: 5060
